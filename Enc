@@ -1,0 +1,14 @@
+import base64
+
+PASSWORD = b""
+
+with open("tg_kod_rookage1.session", "rb") as f:
+    data = f.read()
+
+xored = bytes([b ^ PASSWORD[i % len(PASSWORD)] for i, b in enumerate(data)])
+enc = base64.b64encode(xored)
+
+with open("rookage1_session.enc", "wb") as f:
+    f.write(enc)
+
+print("TAYYOR. .enc faylni Githubga yuklang")
