@@ -1,0 +1,12 @@
+import base64
+
+PASSWORD = b""
+
+with open("rookage1_session.enc", "rb") as f:
+    enc = f.read()
+
+data = base64.b64decode(enc)
+decoded = bytes([b ^ PASSWORD[i % len(PASSWORD)] for i, b in enumerate(data)])
+
+with open("tgkod_rookage1.session", "wb") as f:
+    f.write(decoded)
